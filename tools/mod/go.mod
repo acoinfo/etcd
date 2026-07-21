@@ -16,8 +16,8 @@ require (
 	go.etcd.io/protodoc v0.0.0-20180829002748-484ab544e116
 	go.etcd.io/raft/v3 v3.6.0
 	golang.org/x/tools v0.44.0
-	gotest.tools/gotestsum v1.12.0
-	gotest.tools/v3 v3.5.1
+	gotest.tools/gotestsum v1.13.0
+	gotest.tools/v3 v3.5.2
 	honnef.co/go/tools v0.6.1
 )
 
@@ -84,7 +84,7 @@ require (
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/firefart/nonamedreturns v1.0.6 // indirect
-	github.com/fsnotify/fsnotify v1.7.0 // indirect
+	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/fzipp/gocyclo v0.6.0 // indirect
 	github.com/ghostiam/protogetter v0.3.18 // indirect
 	github.com/go-critic/go-critic v0.14.3 // indirect
