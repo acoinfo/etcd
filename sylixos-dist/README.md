@@ -108,4 +108,3 @@ free          # 看 VMM-Physical memory free，这是物理真相
 - 已验证：最小程序分配 384MB → 回收 384MB（99.5%）；etcd 完整写入压测
   （DB 553MB 时 `heap_sys` 2375MB / 板子 VMM 空闲 1456MB，观察期各指标完全静止）；
   真实 KV 模式复测（8KB 小 value + 30% 读）行为一致
-- 详细技术记录见 `etcd_bbolt_内存膨胀修复实施记录.md`
