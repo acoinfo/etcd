@@ -1,0 +1,31 @@
+# etcd 配置 —— SylixOS (RK3568) 修复版
+#
+# 用法：
+#   1) 把下面的 <BOARD_IP> 全部替换成板子的实际 IP
+#      （etcd 需要 advertise 一个同伴能访问到的地址，不能留 localhost）
+#   2) 起：  ./etcd --config-file=etcd.conf.yml
+#
+# 这两个参数不是可选项，是修内存问题的必需配置，原因见 README.md：
+#   auto-compaction  —— 默认是关的，不开 DB 会无界增长
+#   quota-backend-bytes —— 给 DB 一个上界，内存才有上界
+
+name: 'sylixos-node'
+data-dir: '/apps/etcd-data'
+
+# ---- 客户端 / 同伴监听 ----
+listen-client-urls: 'http://0.0.0.0:2379'
+advertise-client-urls: 'http://<BOARD_IP>:2379'
+listen-peer-urls: 'http://0.0.0.0:2380'
+initial-advertise-peer-urls: 'http://<BOARD_IP>:2380'
+initial-cluster: 'sylixos-node=http://<BOARD_IP>:2380'
+
+# ---- 内存控制（必需，见 README）----
+# 只保留最近 1000 个 revision，写入超过就自动清理旧版本
+auto-compaction-mode: 'revision'
+auto-compaction-retention: '1000'
+# 后端配额 256MB —— 实测物理内存 ≈ 1.1~1.6 × DB 大小，
+# 256MB 配额对应约 1GB 进程内存，在 3GB 板子上是安全区
+quota-backend-bytes: 268435456
+
+# ---- 日志 ----
+log-level: 'info'
